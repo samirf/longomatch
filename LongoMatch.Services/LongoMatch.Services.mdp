@@ -14,7 +14,6 @@
     </Configuration>
   </Configurations>
   <Contents>
-    <File subtype="Directory" buildaction="Compile" name="." />
     <File subtype="Code" buildaction="Compile" name="Services/DataBase.cs" />
     <File subtype="Code" buildaction="Compile" name="Services/TemplatesService.cs" />
     <File subtype="Code" buildaction="Compile" name="Services/RenderingJobsManager.cs" />
@@ -27,6 +26,9 @@
     <File subtype="Directory" buildaction="Compile" name="." />
     <File subtype="Code" buildaction="Compile" name="Services/GameUnitsManager.cs" />
     <File subtype="Directory" buildaction="Compile" name="." />
+    <File subtype="Code" buildaction="Compile" name="Services/AddinsManager.cs" />
+    <File subtype="Directory" buildaction="Compile" name="." />
+    <File subtype="Directory" buildaction="Compile" name=".." />
   </Contents>
   <References>
     <ProjectReference type="Gac" localcopy="True" refto="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
@@ -38,5 +40,6 @@
     <ProjectReference type="Gac" localcopy="True" refto="System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
     <ProjectReference type="Gac" localcopy="True" refto="Mono.Posix, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756" />
     <ProjectReference type="Project" localcopy="True" refto="LongoMatch.Core" />
+    <ProjectReference type="Gac" localcopy="True" refto="Mono.Addins, Version=0.6.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756" />
   </References>
 </Project>

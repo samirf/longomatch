@@ -74,6 +74,8 @@
     <File subtype="Code" buildaction="Compile" name="Store/GameUnitsList.cs" />
     <File subtype="Code" buildaction="Compile" name="Store/TimelineNode.cs" />
     <File subtype="Code" buildaction="Compile" name="Interfaces/ITimelineNode.cs" />
+    <File subtype="Directory" buildaction="Compile" name="Interfaces/Addins" />
+    <File subtype="Code" buildaction="Compile" name="Interfaces/Addins/IExportProject.cs" />
   </Contents>
   <References>
     <ProjectReference type="Gac" localcopy="True" refto="System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
@@ -83,5 +85,6 @@
     <ProjectReference type="Gac" localcopy="True" refto="Mono.Cairo, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756" />
     <ProjectReference type="Gac" localcopy="True" refto="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <ProjectReference type="Gac" localcopy="True" refto="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <ProjectReference type="Gac" localcopy="True" refto="Mono.Addins, Version=0.6.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756" />
   </References>
 </Project>

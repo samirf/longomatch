@@ -19,7 +19,9 @@ using System;
 using System.IO;
 using Gtk;
 using Mono.Unix;
+using Mono.Addins;
 
+using LongoMatch;
 using LongoMatch.Gui;
 using LongoMatch.DB;
 using LongoMatch.Common;
@@ -27,6 +29,7 @@ using LongoMatch.Store;
 
 namespace LongoMatch.Services
 {
+	[assembly:AddinRoot ("LongoMatch", "1.0")]
 	public class Core
 	{
 		static DataBase db;
@@ -124,6 +127,12 @@ namespace LongoMatch.Services
 		public static TemplatesService TemplatesService {
 			get {
 				return ts;
+			}
+		}
+		
+		public static MainWindow MainWindow {
+			get {
+				return mainWindow;
 			}
 		}
 		
