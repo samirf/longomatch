@@ -7,11 +7,11 @@ SUBDIRS = \
 	images \
 	libcesarplayer \
 	LongoMatch.Core \
-	LongoMatch.Addins \
 	LongoMatch.Multimedia \
 	LongoMatch.GUI.Multimedia \
 	LongoMatch.GUI \
 	LongoMatch.Services \
+	LongoMatch.Addins \
 	LongoMatch \
 	po
 
