@@ -1,5 +1,5 @@
 // 
-//  Copyright (C) 2011 Andoni Morales Alastruey
+//  Copyright (C) 2012 Andoni Morales Alastruey
 // 
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -16,30 +16,25 @@
 //  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 // 
 using System;
-using System.IO;
+using System.Collections.Generic;
 
 
-using OfficeOpenXml;
-using LongoMatch.Services;
-using LongoMatch.DB;
-using LongoMatch;
-using LongoMatch.Common;
-using LongoMatch.Store;
-
-namespace LongoMatch.Addins.COE
+namespace LongoMatch.Stats
 {
-class MainClass
+	public class PercentualStat: Stat
 	{
+		int parentTotal;
 		
-		public static void Main(string[] args)
+		public PercentualStat (string name, int totalCount, int localTeamCount,
+			int visitorTeamCount, int parentTotal): base (name, totalCount, localTeamCount, visitorTeamCount)
 		{
-			/* Start DB services */
-			Core.Init();
-			var db = new DataBase(Path.Combine(Config.DBDir(),Constants.DB_FILE));
-			Project p = db.GetProject(db.GetAllProjects()[0].UUID);
-			
-			ExcelExporter ee = new ExcelExporter();
-			ee.ExportProject(p,  "/home/andoni/test.xls");
+			this.parentTotal = parentTotal;
+		}
+		
+		public int TotalPercent {
+			get {
+				return (int) (((float)TotalCount) / parentTotal * 100);
+			}
 		}
 	}
 }

@@ -30,6 +30,7 @@ using LongoMatch.Addins.ExtensionPoints;
 using LongoMatch.Interfaces;
 using LongoMatch.Interfaces.GUI;
 using LongoMatch.Store;
+using LongoMatch.Stats;
 using LongoMatch.Common;
 
 [Extension]
@@ -71,6 +72,7 @@ public class EPPLUSExporter {
 	ExcelPackage package;
 	ExcelWorksheet ws;
 	int duration;
+	int sheetCount = 0;
 	
 	const int TIMELINE_START = 6;
 
@@ -89,22 +91,47 @@ public class EPPLUSExporter {
 		}
 		
 		using (package = new ExcelPackage(newFile)) {
-			ws = CreateSheet(package, "LongoMatch");
-			FillSheet(ws);
-			Console.WriteLine ("Saving");
+			ws = CreateSheet(package, Catalog.GetString("Project statistics"));
+			FillStatsSheet(ws);
+			ws = CreateSheet(package, Catalog.GetString("Categories/TimeLine"));
+			FillCatsSheet(ws);
 			package.Save();
 		}
 	}
 	
 	ExcelWorksheet CreateSheet(ExcelPackage p, string sheetName)
 	{
+		sheetCount ++;
 		p.Workbook.Worksheets.Add(sheetName);
-		ExcelWorksheet ws = p.Workbook.Worksheets[1];
-		ws.Name = sheetName; //Setting Sheet's name
+		ExcelWorksheet ws = p.Workbook.Worksheets[sheetCount];
+		ws.Name = sheetName;
 		return ws;
 	}
 	
-	void FillSheet(ExcelWorksheet ws) {
+	void FillStatsSheet(ExcelWorksheet ws) {
+		int row = 1;
+		
+		ProjectStats stat = new ProjectStats(project);
+		
+		foreach (CategoryStats catStat in stat.CategoriesStats) {
+			SetSubcatHeaders(ws, row, catStat.Name);
+			ws.Cells[row, 6].Value = catStat.TotalCount;
+			row++;
+			
+			foreach (SubCategoryStat subcatStat in catStat.SubcategoriesStats) {
+				SetColoredHeaders(ws, row, subcatStat.Name, 3, 5, Color.DeepSkyBlue, false);
+				row++;
+				
+				foreach (PercentualStat pStat in subcatStat.OptionStats)  {
+					SetSubcatentriesHeaders(ws, row, pStat.Name);
+					ws.Cells[row, 6].Value = String.Format("{0} ({1}%)\n", pStat.TotalCount, pStat.TotalPercent);
+					row++;
+				}
+			}
+		}
+	}
+	
+	void FillCatsSheet(ExcelWorksheet ws) {
 		int row = 1;
 		
 		for (int i = 0; i < TIMELINE_START; i++)

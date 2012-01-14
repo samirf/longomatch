@@ -19,6 +19,8 @@
 using System;
 using System.Collections.Generic;
 using Gtk;
+
+using LongoMatch.Common;
 using LongoMatch.Store;
 using LongoMatch.Store.Templates;
 
@@ -29,11 +31,19 @@ namespace LongoMatch.Gui.Component
 	[System.ComponentModel.ToolboxItem(true)]
 	public partial class TaggerWidget : Gtk.Bin
 	{
+		Play play;
+		
 		public TaggerWidget()
 		{
 			this.Build();
 			table1.NColumns = 1;
 			table1.NRows = 1;
+		}
+		
+		public void SetData (Play play, string localTeam, string visitorTeam) {
+			this.play = play;
+			visitorcheckbutton.Label = localTeam;
+			localcheckbutton.Label = visitorTeam;
 		}
 		
 		public void AddSubCategory(TagSubCategory subcat, StringTagStore tags){
@@ -50,6 +60,20 @@ namespace LongoMatch.Gui.Component
 			table1.Attach(tagger,0, 1, table1.NRows-1, table1.NRows);
 			table1.NRows ++;
 			tagger.Show();
+		}
+		
+		protected void OnCheckbuttonToggled (object sender, System.EventArgs e)
+		{
+			if (visitorcheckbutton.Active && localcheckbutton.Active) {
+				play.Team = Team.BOTH;
+			} else {
+				if (localcheckbutton.Active)
+					play.Team = Team.VISITOR;
+				else if (visitorcheckbutton.Active)
+					play.Team = Team.VISITOR;
+				else
+					play.Team = Team.NONE;
+			}
 		}
 	}
 }
