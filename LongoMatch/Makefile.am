@@ -1,4 +1,4 @@
-ASSEMBLY = LongoMatchGtk
+ASSEMBLY = esyplay
 TARGET = exe
 LINK = $(REF_DEP_LONGOMATCH)
 
@@ -9,12 +9,11 @@ SOURCES = \
 IMAGES = $(top_srcdir)/images/logo.svg \
          $(top_srcdir)/images/background.png
 
-LOGO_48 = $(top_srcdir)/images/48x48/longomatch.png
-LOGO = $(top_srcdir)/images/scalable/longomatch.svg
+LOGO_48 = $(top_srcdir)/images/48x48/esyplay.png
 
-bin_SCRIPTS = longomatch
+bin_SCRIPTS = esyplay
 
-DESKTOP_FILE = longomatch.desktop.in
+DESKTOP_FILE = esyplay.desktop.in
 
 include $(top_srcdir)/build/build.mk
 

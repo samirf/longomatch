@@ -1,7 +1,7 @@
 dnl Warning: This is an automatically generated file, do not edit!
 dnl Process this file with autoconf to produce a configure script.
 AC_PREREQ([2.54])
-AC_INIT([LongoMatch], [0.18.4])
+AC_INIT([ESYPLAY], [1.0])
 AM_INIT_AUTOMAKE([foreign])
 AM_MAINTAINER_MODE
 
@@ -31,7 +31,7 @@ AC_PROG_INSTALL
 #*******************************************************************************
 # Internationalization
 #*******************************************************************************
-GETTEXT_PACKAGE=longomatch
+GETTEXT_PACKAGE=esyplay
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [GETTEXT package name])
 
@@ -133,8 +133,8 @@ LongoMatch.GUI.Multimedia/Makefile
 LongoMatch.GUI/Makefile
 LongoMatch.Services/Makefile
 LongoMatch/Makefile
-LongoMatch/longomatch
-LongoMatch/longomatch.desktop.in
+LongoMatch/esyplay
+LongoMatch/esyplay.desktop.in
 LongoMatch/AssemblyInfo.cs
 
 po/Makefile.in

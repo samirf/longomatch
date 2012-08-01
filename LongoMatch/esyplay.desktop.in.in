@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+_Name=ESYPLAY
+_X-GNOME-FullName=ESYPLAY: Video analysis
+Type=Application
+Exec=esyplay
+Terminal=false
+Categories=Video;AudioVideo;Player;AudioVideoEditing;
+Icon=esyplay

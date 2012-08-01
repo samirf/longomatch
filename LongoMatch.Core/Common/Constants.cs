@@ -25,13 +25,13 @@ using Gdk;
 namespace LongoMatch.Common
 {
 	public class Constants {
-		public const string SOFTWARE_NAME = "LongoMatch";
+		public const string SOFTWARE_NAME = "ESYPLAY";
 
 		public const string PROJECT_NAME = SOFTWARE_NAME + " project";
 
-		public const string DB_FILE = "longomatch.1.db";
+		public const string DB_FILE = "easyplay.1.db";
 		
-		public const string COPYRIGHT =  "Copyright ©2007-2010 Andoni Morales Alastruey";
+		public const string COPYRIGHT =  "Copyright ©2012 ESYPLAY";
 		
 		public const string FAKE_PROJECT = "@Fake Project@";
 		
@@ -75,9 +75,9 @@ Xavier Queralt Mateu (ca)";
 
 		public const int THUMBNAIL_MAX_HEIGHT = 100;
 
-		public const string WEBSITE = "http://www.longomatch.ylatuya.es";
+		public const string WEBSITE = "http://www.viscon97.com";
 
-		public const string MANUAL = "http://www.longomatch.ylatuya.es/documentation/manual.html";
+		public const string MANUAL = "http://www.viscon97.com";
 
 #if HAVE_GTK
 		public const ModifierType STEP = Gdk.ModifierType.ShiftMask;

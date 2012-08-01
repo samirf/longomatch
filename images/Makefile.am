@@ -1,5 +1,6 @@
 DISTCLEANFILES =\
 	logo.svg \
+	esyplay.png \
 	video.png \
 	stock_draw-freeform-line.png \
 	stock_draw-rectangle-unfilled.png \
@@ -7,5 +8,4 @@ DISTCLEANFILES =\
 	camera-video.png \
 	stock_draw-circle-unfilled.png \
 	stock_draw-line-45.png \
-	48x48/longomatch.svg \
-	scalable/longomatch.svg
+	48x48/esyplay.png

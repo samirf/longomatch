@@ -1,7 +1,7 @@
 [encoding: UTF-8]
 libcesarplayer/bacon-video-widget-gst-0.10.c
 libcesarplayer/video-utils.c
-LongoMatch/longomatch.desktop.in.in
+LongoMatch/esyplay.desktop.in.in
 LongoMatch/Main.cs
 LongoMatch.Core/Common/CaptureSettings.cs
 LongoMatch.Core/Common/Cloner.cs
