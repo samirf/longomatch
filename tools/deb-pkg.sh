@@ -1,8 +1,9 @@
 #!/bin/sh
 
 # Creates a debian package for longomatch and uploads it to the ppa
-# USAGE: $./deb-pkg.sh  longomatch 0.16.2 karmic 1
+# USAGE: $ ARCH=i386 ./deb-pkg.sh  longomatch 0.16.2 karmic 1
 
+set -x
 if [ $# -ne 4 ]
 then
   echo "Usage: `basename $0` PKG_NAME PKG_VERSION DISTRIBUTION DEB_VERSION"
@@ -19,6 +20,7 @@ RELEASE=$PKG_NAME-$PKG_VERSION 		# longomatch-x.y.z
 TARBALL=$RELEASE.tar.gz 		# longomatch-x.y.z.tar.gz
 ORIG=$RELEASE~$DEB_RELEASE.orig.tar.gz 	# longomatch-x.y.z~karmicw.orig.tar.gz
 DEST=$RELEASE~$DEB_RELEASE  		# longomatch-x.y.z~karmicw
+DSC=${PKG_NAME}_$PKG_VERSION~$DEB_RELEASE.dsc
 
 mkdir -p $BUILD_DIR
 echo "Copy $TARBALL to $BUILD_DIR/$ORIG"
@@ -36,4 +38,6 @@ rm debian/changelog
 export DEBEMAIL=ylatuya@gmail.com
 echo "Create changelog dch --create --empty -v $PKG_VERSION~$DEB_RELEASE  --package $PKG_NAME --distribution $DIST"
 dch --create -v $PKG_VERSION~$DEB_RELEASE  --package $PKG_NAME --distribution $DIST
-dpkg-buildpackage -B
+dpkg-buildpackage -S
+cd $BUILD_DIR
+pbuilder-dist $DIST $ARCH build $DSC
