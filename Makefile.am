@@ -13,6 +13,7 @@ SUBDIRS = \
 	LongoMatch.GUI \
 	LongoMatch.Services \
 	LongoMatch \
+	EsyPlayImport \
 	po
 
 DISTCLEANFILES = 	intltool-extract\
