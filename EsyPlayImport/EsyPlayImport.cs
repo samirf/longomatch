@@ -104,11 +104,8 @@ public class EasyPlayImporter:IImportProject
 				project.VisitorTeamTemplate.TeamName = reader.Value;
 			} else if (attr == "date") {
 				reader.MoveToAttribute("value");
-				string[] date = reader.Value.Split('-');
 				try {
-					projectDesc.MatchDate = new DateTime(int.Parse(date[0]),
-					                                     int.Parse(date[1]),
-					                                     int.Parse(date[2]));
+					projectDesc.MatchDate = DateTime.ParseExact("yyyy-MM-dd", reader.Value, null);
 				} catch {
 					ImportError("Could not parse date");
 				}
