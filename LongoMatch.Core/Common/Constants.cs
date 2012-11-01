@@ -31,22 +31,13 @@ namespace LongoMatch.Common
 
 		public const string DB_FILE = "easyplay.1.db";
 		
-		public const string COPYRIGHT =  "Copyright ©2012 ESYPLAY";
+		public const string COPYRIGHT =  "Copyright ©2012 viscon97";
 		
 		public const string FAKE_PROJECT = "@Fake Project@";
 		
 		public const string PORTABLE_FILE = "longomatch.portable";
 		
-		public const string LICENSE =
-		        @"This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 2 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.";
+		public const string LICENSE = "Copyright ©2012 viscon97";
 
 		public const string TRANSLATORS =
 		        @"Andoni Morales Alastruey (es)
