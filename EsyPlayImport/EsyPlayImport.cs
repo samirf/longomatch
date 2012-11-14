@@ -107,7 +107,12 @@ public class EasyPlayImporter:IImportProject
 				try {
 					projectDesc.MatchDate = DateTime.ParseExact("yyyy-MM-dd", reader.Value, null);
 				} catch {
-					ImportError("Could not parse date");
+					try {
+						projectDesc.MatchDate = DateTime.ParseExact("yyyy-dd-MM", reader.Value, null);
+					} catch {
+						Log.Warning("Could not parse date: " + reader.Value);
+						projectDesc.MatchDate = DateTime.Now;
+					}
 				}
 				Log.Debug ("Date team: " + projectDesc.MatchDate.ToShortDateString());
 			}
