@@ -123,10 +123,13 @@ public class EasyPlayImporter:IImportProject
 	void ParseTeamTemplate (XmlReader reader, Project project, bool visitor) {
 		TeamTemplate template;
 		
-		if (visitor)
-			reader.ReadToFollowing ("away");	
-		else
+		if (visitor) {
+			if (reader.Name != "away")
+				reader.ReadToFollowing ("away");
+		}
+		else {
 			reader.ReadToFollowing ("home");	
+		}
 		reader.MoveToAttribute("name");
 		
 		template = new TeamTemplate();
@@ -138,8 +141,20 @@ public class EasyPlayImporter:IImportProject
 		else
 			project.LocalTeamTemplate = template;	
 		
+		/* Check for empty templates */
+		reader.Read();
+		if (reader.Name != "away" && reader.Name != "categories") {
+			reader.Read();
+		}
+		if (reader.Name != "player") {
+			Log.Debug ("The team template is empty, creating a default one");
+			TeamTemplate tt = TeamTemplate.DefaultTemplate(15);
+			tt.Name = template.Name;
+			tt.TeamName = template.TeamName;
+			template = tt;
+			return;
+		}
 		
-		reader.ReadToFollowing ("player");
 		do {
 			Player player = new Player();
 			reader.MoveToAttribute("name");
@@ -156,10 +171,11 @@ public class EasyPlayImporter:IImportProject
 		Categories categories = new Categories();
 		project.Categories = categories;
 		
-		reader.ReadToFollowing ("categories");	
+		if (reader.Name != "categories")
+			reader.ReadToFollowing ("categories");
 		reader.MoveToAttribute("name");
 		categories.Name = reader.Value;
-		Log.Debug ("Parsing caregories teamplate " + categories.Name);
+		Log.Debug ("Parsing caregories template " + categories.Name);
 		
 		reader.ReadToFollowing ("category");
 		do {
@@ -177,7 +193,7 @@ public class EasyPlayImporter:IImportProject
 			cat.Color = System.Drawing.Color.FromArgb(Convert.ToInt32(reader.Value, 16));
 			cat.HotKey = new HotKey();
 			categories.AddDefaultSubcategories(cat);
-			Log.Debug ("Added new category " + cat);
+			Log.Debug ("Added new category " + cat.Name);
 		} while (reader.ReadToNextSibling ("category"));
 	}
 	
@@ -207,7 +223,12 @@ public class EasyPlayImporter:IImportProject
 			                         cat.Name, play.Start.ToSecondsString(),
 			                         play.Stop.ToSecondsString()));
 			                         
-			reader.ReadToFollowing ("player");
+			/* No players tagged */
+			if (reader.Name == "action") {
+				project.AddPlay (play);
+				continue;
+			}
+					
 			do {
 				TeamTemplate template;
 				Player player;
@@ -230,7 +251,10 @@ public class EasyPlayImporter:IImportProject
 				play.Players.Add (new PlayerTag {Value=player, SubCategory=subcat});
 			} while (reader.ReadToNextSibling ("player"));
 			project.AddPlay (play);
-		} while (reader.ReadToNextSibling("action"));
+			
+			if (!reader.ReadToNextSibling("action"))
+			    break;
+		} while (true);
 	}
 	
 	void ImportError (string error) {
