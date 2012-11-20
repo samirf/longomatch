@@ -143,7 +143,9 @@ public class EasyPlayImporter:IImportProject
 		
 		/* Check for empty templates */
 		reader.Read();
-		if (reader.Name != "away" && reader.Name != "categories") {
+		/* Check for line breaks too */
+		if (reader.Name != "away" && reader.Name != "categories"
+		    && reader.Name != "player") {
 			reader.Read();
 		}
 		if (reader.Name != "player") {
